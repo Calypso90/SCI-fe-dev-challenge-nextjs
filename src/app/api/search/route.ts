@@ -4,7 +4,9 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const hp = searchParams.get("hp");
   try {
-    const res = await fetch(`https://api.swu-db.com/cards/search?q=h=${hp}`);
+    const res = await fetch(
+      `https://api.swu-db.com/cards/search?q=h=${hp}&pretty=true`
+    );
     if (!res.ok) throw new Error("Failed to fetch cards");
     const data = await res.json();
     // console.log(data);
