@@ -16,6 +16,8 @@
 
 \*\*Updated the card component to remove any data that was missing so none of the tags are empty
 
+\*\*Updated loading animation
+
 # **How to run locally**
 
 1.  Clone the repository
