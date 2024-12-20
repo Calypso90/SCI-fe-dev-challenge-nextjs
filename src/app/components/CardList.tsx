@@ -12,7 +12,7 @@ type CardData = {
   arenas: string[];
   cost: number;
   power: number;
-  hp: number;
+  hp: string;
   fronttext: string;
   doublesided: boolean;
   rarity: string;
@@ -50,32 +50,33 @@ export default function CardList({ hp }: CardListProps) {
       try {
         const res = await fetch(`/api/search?hp=${hp}`);
         if (!res.ok) throw new Error("Failed to fetch cards");
-        const data = (await res.json()) as CardData[];
+        const response = await res.json();
+        const data = response.data;
         console.log("|-o-| CL: data", data);
 
-        const formattedCards = Array.isArray(data)
+        const formattedCards: CardData[] = Array.isArray(data)
           ? data
               .map((card) => ({
-                set: card.set,
-                number: card.number,
-                name: card.name,
-                type: card.type,
-                aspects: card.aspects,
-                traits: card.traits,
-                arenas: card.arenas,
-                cost: card.cost,
-                power: card.power,
-                hp: card.hp,
-                fronttext: card.fronttext,
-                doublesided: card.doublesided,
-                rarity: card.rarity,
-                unique: card.unique,
-                artist: card.artist,
-                varianttype: card.varianttype,
-                marketprice: card.marketprice,
-                foilprice: card.foilprice,
-                frontArt: card.frontArt,
-                id: `${card.set}-${card.number}`, // Creating a unique ID using set and number
+                set: card.Set,
+                number: card.Number,
+                name: card.Name,
+                type: card.Type,
+                aspects: card.Aspects,
+                traits: card.Traits,
+                arenas: card.Arenas,
+                cost: card.Cost,
+                power: card.Power,
+                hp: card.HP,
+                fronttext: card.FrontText,
+                doublesided: card.DoubleSided,
+                rarity: card.Rarity,
+                unique: card.Unique,
+                artist: card.Artist,
+                varianttype: card.VariantType,
+                marketprice: card.MarketPrice,
+                foilprice: card.FoilPrice,
+                frontArt: card.FrontArt,
+                id: `${card.Set}-${card.Number}`, // Creating a unique ID using set and number
               }))
               .sort((a, b) => (a[sortKey] > b[sortKey] ? 1 : -1))
           : [];
@@ -103,34 +104,37 @@ export default function CardList({ hp }: CardListProps) {
 
   return (
     <section className="p-6">
-      <div className="flex justify-center gap-4 mb-6">
+      <div className="flex justify-between gap-4 mb-6">
         <button
           onClick={() => sortCards("name")}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="flex-1 bg-blue-500 hover:shadow-[0px_0px_7px_7px_rgba(46,185,255,1)] text-white font-bold py-2 px-4 rounded"
         >
           Sort by Name
         </button>
         <button
           onClick={() => sortCards("set")}
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          className="flex-1 bg-green-500 hover:shadow-[0px_0px_7px_7px_rgba(46,255,81,1)] text-white font-bold py-2 px-4 rounded"
         >
           Sort by Set
         </button>
         <button
           onClick={() => sortCards("cost")}
-          className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
+          className="flex-1 bg-purple-500 hover:shadow-[0px_0px_7px_7px_rgba(194,133,255,1)] text-white font-bold py-2 px-4 rounded"
         >
           Sort by Cost
         </button>
         <button
           onClick={() => sortCards("power")}
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          className="flex-1 bg-red-500 hover:shadow-[0px_0px_7px_7px_rgba(255,120,120,1)] text-white font-bold py-2 px-4 rounded"
         >
           Sort by Power
         </button>
       </div>
       {loading && (
-        <p className="text-center text-lg font-semibold">Loading cards...</p>
+        <div className="w-full h-full flex items-center justify-center p-10">
+          <p className="text-3xl font-semibold px-10">Loading...</p>
+          <span className="loader"></span>
+        </div>
       )}
       {error && (
         <p className="text-center text-red-500 text-lg font-semibold">

@@ -32,7 +32,7 @@ export default function Dropdown({ onSelect }: DropdownProps) {
   }, []);
 
   return (
-    <div>
+    <div className="mx-4">
       {loading && <p>Loading options...</p>}
       {error && <p>Error: {error}</p>}
       {!loading && !error && (

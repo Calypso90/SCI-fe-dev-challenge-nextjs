@@ -22,3 +22,63 @@ body {
   color: var(--text-color);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+option,
+select {
+  color: black;
+}
+
+.loader {
+  position: relative;
+  animation: flix 3s ease-in infinite alternate;
+  transform: scale(1.33);
+}
+
+.loader:before {
+  content: "";
+  display: block;
+  font-size: 0;
+  width: 64px;
+  height: 64px;
+  background-color: #fff;
+  background-image: radial-gradient(
+      circle 16px at 29px 29px,
+      #ff3d00 100%,
+      transparent 0
+    ),
+    radial-gradient(circle 13px at 8px 53px, #ff3d00 100%, transparent 0),
+    radial-gradient(circle 19px at 41px -8px, #ff3d00 100%, transparent 0),
+    radial-gradient(circle 7px at 53px 40px, #ff3d00 100%, transparent 0);
+  border-radius: 50%;
+  animation: rotate 1s linear infinite;
+}
+
+.loader:after {
+  content: "";
+  position: absolute;
+  top: 0%;
+  transform: translate(-50%, -100%);
+  left: 50%;
+  width: 32px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50px 50px 0 0;
+}
+
+@keyframes flix {
+  0%,
+  60% {
+    transform: rotate(-10deg);
+  }
+  100%,
+  30%,
+  80% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
