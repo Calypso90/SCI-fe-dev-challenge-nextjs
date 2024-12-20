@@ -12,7 +12,7 @@ type CardData = {
   arenas: string[];
   cost: number;
   power: number;
-  hp: string;
+  hp: number;
   fronttext: string;
   doublesided: boolean;
   rarity: string;
@@ -31,7 +31,7 @@ type CardListProps = {
 
 /**
  * A component that displays a list of cards, sorted by a specified key.
- * @param {string} hp - The HP value to filter cards by.
+ * @param {number} hp - The HP value to filter cards by.
  * @returns {JSX.Element} A component that renders a list of cards.
  */
 

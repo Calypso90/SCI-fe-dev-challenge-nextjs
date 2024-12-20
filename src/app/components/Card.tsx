@@ -50,20 +50,20 @@ export default function Card({
         {/* Right Text Section */}
         <div className="flex flex-col justify-center">
           <h2 className="text-lg font-bold">{name}</h2>
-          <p className="text-sm">Set: {set}</p>
-          <p className="text-sm">Type: {type}</p>
-          <p className="text-sm">Cost: {cost}</p>
-          <p className="text-sm">Power: {power}</p>
-          <p className="text-sm">HP: {hp}</p>
-          <p className="text-sm">Traits: {traits.join(", ")}</p>
-          <p className="text-sm">Rarity: {rarity}</p>
+          {set && <p className="text-sm">Set: {set}</p>}
+          {type && <p className="text-sm">Type: {type}</p>}
+          {cost && <p className="text-sm">Cost: {cost}</p>}
+          {power && <p className="text-sm">Power: {power}</p>}
+          {hp && <p className="text-sm">HP: {hp}</p>}
+          {traits && <p className="text-sm">Traits: {traits?.join(", ")}</p>}
+          {rarity && <p className="text-sm">Rarity: {rarity}</p>}
         </div>
       </div>
 
       {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 m-10">
-          <div className="bg-[#0a0a0a] rounded-lg shadow-lg p-6 w-96 relative shadow-[0px_0px_15px_15px_rgba(255,255,255,1)]">
+          <div className="bg-[#0a0a0a] rounded-lg shadow-lg p-6 w-96 relative shadow-[0px_0px_20px_20px_rgba(255,255,255,1)]">
             {/* Close Button */}
             <button
               className="absolute top-4 right-4 text-gray-300 hover:text-gray-900"
@@ -79,14 +79,14 @@ export default function Card({
               height={300}
               className="w-full h-auto object-cover rounded-lg mt-6 mb-4"
             />
-            <h2 className="text-2xl font-bold mb-4">{name}</h2>
-            <p className="text-sm">Set: {set}</p>
-            <p className="text-sm">Type: {type}</p>
-            <p className="text-sm">Cost: {cost}</p>
-            <p className="text-sm">Power: {power}</p>
-            <p className="text-sm">HP: {hp}</p>
-            <p className="text-sm">Traits: {traits.join(", ")}</p>
-            <p className="text-sm">Rarity: {rarity}</p>
+            <h2 className="text-3xl font-bold mb-4">{name}</h2>
+            {set && <p className="text-xl">Set: {set}</p>}
+            {type && <p className="text-xl">Type: {type}</p>}
+            {cost && <p className="text-xl">Cost: {cost}</p>}
+            {power && <p className="text-xl">Power: {power}</p>}
+            {hp && <p className="text-xl">HP: {hp}</p>}
+            {traits && <p className="text-xl">Traits: {traits?.join(", ")}</p>}
+            {rarity && <p className="text-xl">Rarity: {rarity}</p>}
           </div>
         </div>
       )}
